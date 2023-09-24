@@ -1,2 +1,4 @@
+from get_data import *
+
 if __name__ == '__main__':
-    pass
+    update_latest_data()

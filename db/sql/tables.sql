@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS comment (
     hn_story_id         INTEGER     NOT NULL        REFERENCES story(hn_story_id),
     contents            TEXT        NOT NULL,
     created             INTEGER     NOT NULL,
-    sentiment           FLOAT,
+    polarity            FLOAT       NOT NULL,
+    subjectivity        FLOAT       NOT NULL,
     UNIQUE(hn_comment_id)
 );
