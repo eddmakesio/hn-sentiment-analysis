@@ -26,9 +26,18 @@ def get_stories_comments(story_id: int):
 
     return comments
 
-if __name__ == '__main__':
+def save_story(story):
     cur = con.cursor()
-    
+    sql_query = "INSERT OR IGNORE INTO story (hn_story_id, title, created) VALUES(?, ?, ?)"
+    insert_data = (story["id"], story["title"], story["time"])
+    cur.execute(sql_query, insert_data)
+    con.commit()
+    cur.close()
+
+if __name__ == '__main__':    
     best_stories = get_best_stories()
-    comments = get_stories_comments(best_stories[0])
-    print(comments)
+    for story_id in best_stories:
+        print(f'Saving {story_id}...')
+        story = get_story_data(story_id)
+        save_story(story)
+        
