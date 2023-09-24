@@ -1,6 +1,8 @@
 import requests
-from textblob import TextBlob
+import sqlite3
 
+
+con = sqlite3.connect("./db/hn_sentiment_analysis.db")
 
 API = "https://hacker-news.firebaseio.com/v0"
 
@@ -25,9 +27,8 @@ def get_stories_comments(story_id: int):
     return comments
 
 if __name__ == '__main__':
+    cur = con.cursor()
+    
     best_stories = get_best_stories()
     comments = get_stories_comments(best_stories[0])
-    for comment in comments:
-        blob = TextBlob(comment["text"])
-        print(blob.sentiment)
-        print(blob.sentiment.polarity)
+    print(comments)
