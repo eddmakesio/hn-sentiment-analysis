@@ -1,1 +1,2 @@
-*.db
+db/hn_sentiment_analysis.db
+__pycache__
