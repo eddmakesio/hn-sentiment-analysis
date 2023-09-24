@@ -63,6 +63,7 @@ if __name__ == '__main__':
         story = get_story_data(story_id)
         save_story(story)
         comments = get_stories_comments(story["id"])
-        for comment in comments:
-            print(f'Saving comment #{comment["id"]}...')
-            save_comment(comment)
+        if comments is not None:
+            for comment in comments:
+                print(f'Saving comment #{comment["id"]}...')
+                save_comment(comment)
